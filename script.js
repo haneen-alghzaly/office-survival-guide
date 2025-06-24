@@ -5,12 +5,13 @@ function toggleMenuLock() {
     const categoryButtons = document.querySelectorAll('.categorybtn');
     
     if (sidebar.classList.contains('unlocked')) {
-
+        // Lock and collapse menu
         sidebar.classList.remove('unlocked');
-        sidebar.classList.add('locked');
+        sidebar.classList.add('locked', 'collapsed');
         lockIcon.textContent = '🔒';
         lockIcon.title = 'Click to unlock menu';
-        
+        sidebar.style.maxHeight = '250px';
+         sidebar.style.overflowY = 'auto';
         categoryButtons.forEach(btn => {
             btn.disabled = true;
             btn.style.cursor = 'not-allowed';
@@ -22,12 +23,12 @@ function toggleMenuLock() {
         });
         
     } else {
-
-        sidebar.classList.remove('locked');
+        // Unlock and expand menu
+        sidebar.classList.remove('locked', 'collapsed');
         sidebar.classList.add('unlocked');
         lockIcon.textContent = '🔓';
         lockIcon.title = 'Click to lock menu';
-        
+        sidebar.style.maxHeight = 'fit-content'; 
         categoryButtons.forEach(btn => {
             btn.disabled = false;
             btn.style.cursor = 'pointer';
@@ -38,7 +39,6 @@ function toggleMenuLock() {
 
 // Initialize lock icon
 document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
-document.getElementById('sidebar').classList.add('expanded');
 
 // Toggle topic visibility
 function toggleTopics(topicId) {
