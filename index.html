@@ -1,1 +1,102 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clueless Intern's Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">Clueless Intern's Guide</div>
+        <div class="header-right">
+            <img src="images/office-logo.png" alt="Office Survival Logo" class="logo">
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar expanded" id="sidebar">
+            <div class="menu-title">
+                GUIDE MENU
+                <span class="lock-icon" id="lockIcon" title="Click to lock menu">🔓</span>
+            </div>
+            <div class="dropdown-content">
+                <div class="category">
+                    <button onclick="toggleTopics('emailTopics')" class="categorybtn">📧 Email Nightmares</button>
+                    <div id="emailTopics" class="topics">
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/7BpQfI981-U')" class="active">▶️ Reply-All Apocalypse</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/zKPcqAHJDqc')">▶️ BCC Etiquette Fails</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/FyzXfRQglec')">▶️ Subject Line Crimes</a>
+                        <a href="#" onclick="showQuiz('quiz1')">📝 Quiz 1: Email Etiquette</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/IMXRHYC8q3A')">▶️ Emoji Crimes at Work</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/X6etJapxa5U')">▶️ Autocorrect Disasters</a>
+                        <a href="#" onclick="showQuiz('quiz2')">📝 Quiz 2: Email Recovery</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/HT7I8ZJZ_1I')">▶️ 3 AM Email Regret</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/iDbdXTMnOmE')">▶️ Missing Attachments</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/dQw4w9WgXcQ')">▶️ Passive-Aggressive Emails</a>
+                        <a href="#" onclick="showQuiz('quiz3')">📝 Quiz 3: Office Politics</a>
+                        <a href="#" onclick="showMap('images/saudi-arabia-map.png')">🗺️ Global Email Hazard Map</a>
+                    </div>
+                </div>
+                <div class="category">
+                    <button onclick="toggleTopics('officeTopics')" class="categorybtn">🏢 Office Survival</button>
+                    <div id="officeTopics" class="topics">
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/ABC123')">▶️ Zoom Meeting Fails</a>
+                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/DEF456')">▶️ Coffee Machine Wars</a>
+                        <a href="#" onclick="showQuiz('quiz4')">📝 Quiz 4: Office Culture</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <div class="video-container" id="videoContainer">
+                <iframe id="courseVideo" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div id="quizContainer" class="quiz-container">
+                <h2 id="quizTitle">Quiz</h2>
+                <form id="quizForm">
+                    <div class="quiz-question">
+                        <p id="quizQuestion">Question will appear here</p>
+                        <div class="options-list" id="optionsList"></div>
+                    </div>
+                    <button class="submit-btn" type="button" onclick="submitQuiz()">Submit</button>
+                </form>
+            </div>
+
+            <div id="mapContainer" class="map-container">
+                <h2 id="mapTitle">Global Email Hazard Zones</h2>
+                <div class="map-controls">
+                    <button class="filter-btn active all-btn" onclick="filterMap('all')">
+                        <i class="fas fa-globe"></i> Show All
+                    </button>
+                    <button class="filter-btn high-btn" onclick="filterMap('high')">
+                        <i class="fas fa-skull"></i> High Risk
+                    </button>
+                    <button class="filter-btn medium-btn" onclick="filterMap('medium')">
+                        <i class="fas fa-exclamation-triangle"></i> Medium Risk
+                    </button>
+                    <button class="filter-btn low-btn" onclick="filterMap('low')">
+                        <i class="fas fa-check-circle"></i> Low Risk
+                    </button>
+                </div>
+                <div class="map-content"></div>
+            </div>
+
+            <button class="continue-btn" id="continueBtn" onclick="continueToNext()">Continue →</button>
+        </div>
+    </div>
+
+    <div id="quizFeedback" class="quiz-feedback">
+        <div class="feedback-content">
+            <span id="feedbackIcon">✓</span>
+            <p id="feedbackMessage">Your answer is correct!</p>
+            <button onclick="closeFeedback()">Continue</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
