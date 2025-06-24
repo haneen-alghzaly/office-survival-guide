@@ -37,7 +37,7 @@ function toggleMenuLock() {
     }
 }
 
-// Initialize lock icon
+// Initializing lock icon
 document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
 
 // Toggle topic visibility
