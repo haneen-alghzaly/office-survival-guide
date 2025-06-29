@@ -1,3 +1,4 @@
+/* Define color variables for theme consistency across the site */
 :root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
@@ -8,18 +9,70 @@
     --border-color: #e9ecef;
 }
 
+/* Welcome Screen styles */
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome-content {
+  max-width: 480px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  padding: 2rem 3rem;
+}
+
+.welcome-content h1 {
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  color: #2c3e50;
+}
+
+.welcome-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #34495e;
+}
+
+#welcomeScreen button#enterBtn {
+  background-color: #2980b9;
+  border: none;
+  color: white;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+#welcomeScreen button#enterBtn:hover {
+  background-color: #3498db;
+}
+
+/* Reset default browser styles and ensure consistent box sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Set the default font, background, and text color for the body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f5f5;
     color: #333;
 }
 
+/* Style the top navigation header with padding and shadow */
 header {
     display: flex;
     justify-content: space-between;
@@ -29,17 +82,20 @@ header {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+/* Set the title style in the header */
 .header-left {
     font-size: 24px;
     font-weight: bold;
     color: var(--primary-color);
 }
 
+/* Control the size of the logo image */
 .logo {
     height: 60px;
     width: auto;
 }
 
+/* Define the grid layout with sidebar and main content */
 .container {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -49,6 +105,7 @@ header {
     margin: 0 auto;
 }
 
+/* Style the sidebar menu with background and shadow */
 .sidebar {
     background-color: #fff;
     border-radius: 8px;
@@ -58,14 +115,17 @@ header {
     height: fit-content;
 }
 
+/* Collapse the sidebar to hide topics */
 .sidebar.collapsed {
     max-height: 60px;
 }
 
+/* Hide topic list when sidebar is collapsed */
 .sidebar.collapsed .topics {
     display: none;
 }
 
+/* Style the clickable menu title in each sidebar section */
 .menu-title {
     padding: 15px;
     background-color: var(--primary-color);
@@ -77,16 +137,19 @@ header {
     cursor: pointer;
 }
 
+/* Style the icon that toggles menu lock/collapse */
 .lock-icon {
     cursor: pointer;
     font-size: 18px;
     margin-left: 10px;
 }
 
+/* Add padding to the dropdown menu content */
 .dropdown-content {
     padding: 15px;
 }
 
+/* Style buttons for each category in the sidebar */
 .categorybtn {
     width: 100%;
     padding: 12px 15px;
@@ -101,21 +164,25 @@ header {
     transition: all 0.2s;
 }
 
+/* Highlight category button on hover */
 .categorybtn:hover {
     background-color: var(--border-color);
 }
 
+/* Visually disable the button when needed */
 .categorybtn[disabled] {
     background-color: #e9ecef !important;
     color: #6c757d !important;
     cursor: not-allowed;
 }
 
+/* Hide topic links by default inside categories */
 .topics {
     display: none;
     padding-left: 15px;
 }
 
+/* Style each topic link inside the sidebar */
 .topics a {
     display: block;
     padding: 10px 15px;
@@ -125,12 +192,14 @@ header {
     transition: all 0.2s;
 }
 
+/* Highlight active or hovered topic links */
 .topics a:hover, .topics a.active {
     background-color: var(--border-color);
     border-left: 3px solid var(--primary-color);
     color: var(--primary-color);
 }
 
+/* Style the main content area on the right */
 .main-content {
     background-color: #fff;
     border-radius: 8px;
@@ -138,6 +207,7 @@ header {
     padding: 20px;
 }
 
+/* Maintain responsive 16:9 aspect ratio for embedded videos */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -146,6 +216,7 @@ header {
     margin-bottom: 20px;
 }
 
+/* Make iframe fill the video container */
 .video-container iframe {
     position: absolute;
     top: 0;
@@ -156,25 +227,30 @@ header {
     border-radius: 5px;
 }
 
+/* Hide the quiz container by default */
 .quiz-container {
     display: none;
 }
 
+/* Style each quiz question section */
 .quiz-question {
     margin-bottom: 20px;
 }
 
+/* Style the question text */
 .quiz-question p {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
+/* Arrange answer options vertically with spacing */
 .options-list {
     display: grid;
     gap: 10px;
 }
 
+/* Style individual answer option blocks */
 .options-list label {
     display: flex;
     align-items: center;
@@ -185,10 +261,12 @@ header {
     transition: all 0.2s;
 }
 
+/* Highlight option on hover */
 .options-list label:hover {
     background-color: var(--border-color);
 }
 
+/* Style the quiz submit button */
 .submit-btn {
     background-color: var(--primary-color);
     color: white;
@@ -200,10 +278,12 @@ header {
     transition: background-color 0.2s;
 }
 
+/* Darken the submit button on hover */
 .submit-btn:hover {
     background-color: #1a252f;
 }
 
+/* Fullscreen overlay for quiz feedback (correct/incorrect) */
 .quiz-feedback {
     position: fixed;
     top: 0;
@@ -217,6 +297,7 @@ header {
     z-index: 1000;
 }
 
+/* Style the feedback modal box */
 .feedback-content {
     background-color: white;
     padding: 30px;
@@ -226,20 +307,24 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* Icon shown inside the feedback modal */
 #feedbackIcon {
     font-size: 50px;
     margin-bottom: 20px;
     display: block;
 }
 
+/* Color for correct feedback */
 .correct {
     color: var(--success-color);
 }
 
+/* Color for incorrect feedback */
 .incorrect {
     color: var(--danger-color);
 }
 
+/* Style the feedback modal’s button */
 .quiz-feedback button {
     background-color: var(--secondary-color);
     color: white;
@@ -251,10 +336,12 @@ header {
     transition: background-color 0.2s;
 }
 
+/* Slightly darken feedback button on hover */
 .quiz-feedback button:hover {
     background-color: #2980b9;
 }
 
+/* Button to continue after seeing feedback */
 .continue-btn {
     display: block;
     margin: 20px auto 0;
@@ -268,10 +355,12 @@ header {
     transition: background-color 0.2s;
 }
 
+/* Darken continue button on hover */
 .continue-btn:hover {
     background-color: #2980b9;
 }
 
+/* Container for the interactive map section */
 .map-container {
     display: none;
     position: relative;
@@ -282,6 +371,7 @@ header {
     border: solid 0.5px #c1bebe; 
 }
 
+/* Top control bar with filter buttons for the map */
 .map-controls {
     display: flex;
     gap: 10px;
@@ -294,6 +384,7 @@ header {
     border-radius: 5px;
 }
 
+/* Style the map filter buttons */
 .filter-btn {
     padding: 8px 15px;
     border: none;
@@ -307,20 +398,24 @@ header {
     transition: all 0.2s;
 }
 
+/* Highlight active filter button */
 .filter-btn.active {
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
+/* Slight opacity on hover for buttons */
 .filter-btn:hover {
     opacity: 0.9;
 }
 
+/* Individual button color variations by severity */
 .all-btn { background-color: var(--secondary-color); }
 .high-btn { background-color: var(--danger-color); }
 .medium-btn { background-color: var(--warning-color); }
 .low-btn { background-color: var(--success-color); }
 
+/* Container for map display (Leaflet.js map area) */
 .map-content {
     position: relative;
     width: 100%;
@@ -330,13 +425,14 @@ header {
     overflow: hidden;
 }
 
+/* Style the actual Leaflet map */
 #leafletMap {
     height: 100%;
     width: 100%;
     border-radius: 5px;
 }
 
-/* Leaflet custom styles */
+/* Custom tooltip for map points */
 .leaflet-tooltip {
     background: white;
     border: 1px solid var(--border-color);
@@ -347,15 +443,18 @@ header {
     margin-top: 5px;
 }
 
+/* Style map popups */
 .leaflet-popup-content {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Optional styling for custom map markers */
 .custom-pin {
     background: transparent;
     border: none;
 }
 
+/* Adjust layout for tablets (≤ 992px) */
 @media (max-width: 992px) {
     .container {
         grid-template-columns: 1fr;
@@ -374,6 +473,7 @@ header {
     }
 }
 
+/* Stack elements for mobile (≤ 576px) */
 @media (max-width: 576px) {
     header {
         flex-direction: column;

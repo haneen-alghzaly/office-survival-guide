@@ -1,104 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page metadata and external stylesheets -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clueless Intern's Guide</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="images/tab-icon.png" type="image/png">
+
+    <!-- Leaflet.js map library CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Font Awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Browser tab icon -->
+    <link rel="icon" href="images/tab-icon.png" type="image/png" />
 </head>
 <body>
+
+  <!-- ======= Welcome Screen ======= -->
+  <div id="welcomeScreen" class="welcome-screen">
+    <div class="welcome-content">
+      <h1>Welcome to Clueless Intern's Guide</h1>
+      <p>
+        Starting your first office job can be confusing.
+        This site is here to help you avoid common communication pitfalls, master email etiquette, 
+        and survive your internship with confidence. 
+        Ready to become the intern everyone relies on? Let’s get started!
+      </p>
+      <button id="enterBtn">Enter Guide</button>
+    </div>
+  </div>
+
+  <!-- ======= Main Content (hidden initially) ======= -->
+  <div id="appContent" style="display: none;">
+
+    <!-- Page header with title and logo -->
     <header>
-        <div class="header-left">Clueless Intern's Guide</div>
-        <div class="header-right">
-            <img src="images/office-logo.png" alt="Office Survival Logo" class="logo">
-        </div>
+      <div class="header-left">Clueless Intern's Guide</div>
+      <div class="header-right">
+        <img
+          src="images/office-logo.png"
+          alt="Office Survival Logo"
+          class="logo"
+        />
+      </div>
     </header>
 
+    <!-- Main container splits layout into sidebar and content -->
     <div class="container">
-        <div class="sidebar" id="sidebar">
-            <div class="menu-title">
-                GUIDE MENU
-                <span class="lock-icon" id="lockIcon" title="Click to lock menu">🔓</span>
-            </div>
-            <div class="dropdown-content">
-                <div class="category">
-                    <button onclick="toggleTopics('emailTopics')" class="categorybtn">📧 Email Nightmares</button>
-                    <div id="emailTopics" class="topics">
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/7BpQfI981-U')" class="active">▶️ Reply-All Apocalypse</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/zKPcqAHJDqc')">▶️ BCC Etiquette Fails</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/FyzXfRQglec')">▶️ Subject Line Crimes</a>
-                        <a href="#" onclick="showQuiz('quiz1')">📝 Quiz 1: Email Etiquette</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/IMXRHYC8q3A')">▶️ Emoji Crimes at Work</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/X6etJapxa5U')">▶️ Autocorrect Disasters</a>
-                        <a href="#" onclick="showQuiz('quiz2')">📝 Quiz 2: Email Recovery</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/kimCs2emBi8')">▶️ Missing Attachments</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/IIRJIY9w1wM')">▶️ Passive-Aggressive Emails</a>
-                        <a href="#" onclick="showQuiz('quiz3')">📝 Quiz 3: Office Politics</a>
-                        <a href="#" onclick="showMap('saudi')">🗺️ Global Email Hazard Map</a>
-                    </div>
-                </div>
-                <div class="category">
-                    <button onclick="toggleTopics('officeTopics')" class="categorybtn">🏢 Intern Life Crisis</button>
-                    <div id="officeTopics" class="topics">
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/pPnAX3iZxuA')">▶️ First Day Panic</a>
-                        <a href="#" onclick="showVideo('https://www.youtube.com/embed/jxLEPPoCsKE')">▶️ Lost in the Meeting</a>
-                        <a href="#" onclick="showQuiz('quiz4')">📝 Quiz 4: Office Culture</a>
-                    </div>
-                </div>
-            </div>
+
+      <!-- Sidebar with collapsible category menus -->
+      <div class="sidebar" id="sidebar">
+
+        <!-- Sidebar header with lock toggle -->
+        <div class="menu-title">
+          GUIDE MENU
+          <span
+            class="lock-icon"
+            id="lockIcon"
+            title="Click to lock menu"
+            >🔓</span
+          >
         </div>
 
-        <div class="main-content" id="mainContent">
-            <div class="video-container" id="videoContainer">
-                <iframe id="courseVideo" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <!-- Dropdown area for category buttons and topic links -->
+        <div class="dropdown-content">
 
-            <div id="quizContainer" class="quiz-container">
-                <h2 id="quizTitle">Quiz</h2>
-                <form id="quizForm">
-                    <div class="quiz-question">
-                        <p id="quizQuestion">Question will appear here</p>
-                        <div class="options-list" id="optionsList"></div>
-                    </div>
-                    <button class="submit-btn" type="button" onclick="submitQuiz()">Submit</button>
-                </form>
+          <!-- First category: Email Nightmares -->
+          <div class="category">
+            <button
+              onclick="toggleTopics('emailTopics')"
+              class="categorybtn"
+            >
+              📧 Email Nightmares
+            </button>
+            <div id="emailTopics" class="topics">
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/7BpQfI981-U')"
+                class="active"
+                >▶️ Reply-All Apocalypse</a
+              >
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/zKPcqAHJDqc')"
+                >▶️ BCC Etiquette Fails</a
+              >
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/FyzXfRQglec')"
+                >▶️ Subject Line Crimes</a
+              >
+              <a href="#" onclick="showQuiz('quiz1')">📝 Quiz 1: Email Etiquette</a>
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/IMXRHYC8q3A')"
+                >▶️ Emoji Crimes at Work</a
+              >
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/X6etJapxa5U')"
+                >▶️ Autocorrect Disasters</a
+              >
+              <a href="#" onclick="showQuiz('quiz2')">📝 Quiz 2: Email Recovery</a>
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/kimCs2emBi8')"
+                >▶️ Missing Attachments</a
+              >
+              <a
+                href="#"
+                onclick="showVideo('https://www.youtube.com/embed/IIRJIY9w1wM')"
+                >▶️ Passive-Aggressive Emails</a
+              >
+              <a href="#" onclick="showQuiz('quiz3')">📝 Quiz 3: Office Politics</a>
+              <a href="#" onclick="showMap('saudi')">🗺️ Global Email Hazard Map</a>
             </div>
+          </div>
 
-            <div id="mapContainer" class="map-container">
-                <h2 id="mapTitle">Saudi Arabia Email Zones</h2>
-                <div class="map-controls">
-                    <button class="filter-btn active all-btn" onclick="filterMap('all')">
-                        <i class="fas fa-globe"></i> Show All
-                    </button>
-                    <button class="filter-btn high-btn" onclick="filterMap('high')">
-                        <i class="fas fa-skull"></i> High Risk
-                    </button>
-                    <button class="filter-btn medium-btn" onclick="filterMap('medium')">
-                        <i class="fas fa-exclamation-triangle"></i> Medium Risk
-                    </button>
-                    <button class="filter-btn low-btn" onclick="filterMap('low')">
-                        <i class="fas fa-check-circle"></i> Low Risk
-                    </button>
-                </div>
-                <div class="map-content" id="mapContent"></div>
+          <!-- Second category: Intern Life Crisis -->
+          <div class="category">
+            <button onclick="toggleTopics('officeTopics')" class="categorybtn">
+              🏢 Intern Life Crisis
+            </button>
+            <div id="officeTopics" class="topics">
+              <a href="#" onclick="showVideo('https://www.youtube.com/embed/pPnAX3iZxuA')"
+                >▶️ First Day Panic</a
+              >
+              <a href="#" onclick="showVideo('https://www.youtube.com/embed/jxLEPPoCsKE')"
+                >▶️ Lost in the Meeting</a
+              >
+              <a href="#" onclick="showQuiz('quiz4')">📝 Quiz 4: Office Culture</a>
             </div>
-
-            <button class="continue-btn" id="continueBtn" onclick="continueToNext()">Continue →</button>
+          </div>
         </div>
+      </div>
+
+      <!-- Main content area that updates based on menu interaction -->
+      <div class="main-content" id="mainContent">
+
+        <!-- Embedded video player section -->
+        <div class="video-container" id="videoContainer">
+          <iframe
+            id="courseVideo"
+            src=""
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <!-- Interactive quiz container (hidden until shown) -->
+        <div id="quizContainer" class="quiz-container">
+          <h2 id="quizTitle">Quiz</h2>
+          <form id="quizForm">
+            <div class="quiz-question">
+              <p id="quizQuestion">Question will appear here</p>
+              <div class="options-list" id="optionsList"></div>
+            </div>
+            <button class="submit-btn" type="button" onclick="submitQuiz()">
+              Submit
+            </button>
+          </form>
+        </div>
+
+        <!-- Interactive map section (hidden by default) -->
+        <div id="mapContainer" class="map-container">
+          <h2 id="mapTitle">Saudi Arabia Email Zones</h2>
+
+          <!-- Filter buttons for map risk levels -->
+          <div class="map-controls">
+            <button class="filter-btn active all-btn" onclick="filterMap('all')">
+              <i class="fas fa-globe"></i> Show All
+            </button>
+            <button class="filter-btn high-btn" onclick="filterMap('high')">
+              <i class="fas fa-skull"></i> High Risk
+            </button>
+            <button class="filter-btn medium-btn" onclick="filterMap('medium')">
+              <i class="fas fa-exclamation-triangle"></i> Medium Risk
+            </button>
+            <button class="filter-btn low-btn" onclick="filterMap('low')">
+              <i class="fas fa-check-circle"></i> Low Risk
+            </button>
+          </div>
+
+          <!-- Leaflet.js map display area -->
+          <div class="map-content" id="mapContent"></div>
+        </div>
+
+        <!-- Button to proceed to the next section -->
+        <button class="continue-btn" id="continueBtn" onclick="continueToNext()">
+          Continue →
+        </button>
+      </div>
     </div>
 
+    <!-- Fullscreen overlay for quiz feedback (correct/wrong answer) -->
     <div id="quizFeedback" class="quiz-feedback">
-        <div class="feedback-content">
-            <span id="feedbackIcon">✓</span>
-            <p id="feedbackMessage">Your answer is correct!</p>
-            <button onclick="closeFeedback()">Continue</button>
-        </div>
+      <div class="feedback-content">
+        <span id="feedbackIcon">✓</span>
+        <p id="feedbackMessage">Your answer is correct!</p>
+        <button onclick="closeFeedback()">Continue</button>
+      </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+  <!-- Leaflet.js script for map functionality -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Custom JS for video, quiz, map, and menu logic -->
+  <script src="script.js"></script>
 </body>
 </html>

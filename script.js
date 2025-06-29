@@ -11,7 +11,7 @@ function toggleMenuLock() {
         lockIcon.textContent = '🔒';
         lockIcon.title = 'Click to unlock menu';
         sidebar.style.maxHeight = '250px';
-         sidebar.style.overflowY = 'auto';
+        sidebar.style.overflowY = 'auto';
         categoryButtons.forEach(btn => {
             btn.disabled = true;
             btn.style.cursor = 'not-allowed';
@@ -37,7 +37,7 @@ function toggleMenuLock() {
     }
 }
 
-// Initialize lock icon
+// Initialize lock icon click event
 document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
 
 // Toggle topic visibility
@@ -450,7 +450,7 @@ function showMap(mapType) {
     if (mapType === 'saudi') {
         initSaudiMap();
     } else {
-        // Default map display (if you add other maps later)
+        // Default map display (we can add other maps later)
         const mapContent = document.getElementById('mapContent');
         mapContent.innerHTML = `<img src="images/${mapType}-map.png" class="map-img">`;
         document.querySelector('.map-controls').style.display = 'none';
@@ -459,8 +459,18 @@ function showMap(mapType) {
     updateActiveLink(event.target);
 }
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    // Show first video by default
+// Show welcome screen on page load, hide app content
+document.addEventListener('DOMContentLoaded', () => {
+  const welcomeScreen = document.getElementById('welcomeScreen');
+  const appContent = document.getElementById('appContent');
+  const enterBtn = document.getElementById('enterBtn');
+
+  // On clicking Enter Guide, hide welcome and show app content
+  enterBtn.addEventListener('click', () => {
+    welcomeScreen.style.display = 'none';
+    appContent.style.display = 'block';
+
+    // Show the first video by default once inside the app
     showVideo('https://www.youtube.com/embed/7BpQfI981-U');
+  });
 });
