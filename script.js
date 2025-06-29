@@ -1,3 +1,4 @@
+
 // Toggle menu lock state
 function toggleMenuLock() {
     const sidebar = document.getElementById('sidebar');
@@ -21,7 +22,6 @@ function toggleMenuLock() {
         document.querySelectorAll('.topics').forEach(topic => {
             topic.style.display = 'none';
         });
-        
     } else {
         // Unlock and expand menu
         sidebar.classList.remove('locked', 'collapsed');
@@ -34,11 +34,36 @@ function toggleMenuLock() {
             btn.style.cursor = 'pointer';
             btn.style.opacity = '1';
         });
+        document.querySelectorAll('.topics').forEach(topic => {
+            topic.style.display = 'block';
+        });
     }
 }
 
-// Initialize lock icon click event
-document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
+// Initialize with topics visible
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize lock icon (only once)
+    document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
+    
+    // Initialize sidebar state
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.add('unlocked');
+    
+    // Show all topics by default
+    document.querySelectorAll('.topics').forEach(topic => {
+        topic.style.display = 'block';
+    });
+     // Welcome screen setup
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const appContent = document.getElementById('appContent');
+    const enterBtn = document.getElementById('enterBtn');
+
+    enterBtn.addEventListener('click', () => {
+        welcomeScreen.style.display = 'none';
+        appContent.style.display = 'block';
+        showVideo('https://www.youtube.com/embed/7BpQfI981-U');
+    });
+});
 
 // Toggle topic visibility
 function toggleTopics(topicId) {
@@ -53,7 +78,11 @@ function showVideo(videoUrl) {
     
     const videoContainer = document.getElementById('videoContainer');
     videoContainer.style.display = 'block';
-    document.getElementById('courseVideo').src = videoUrl;
+let autoplayUrl = videoUrl;
+if (!autoplayUrl.includes('autoplay=1')) {
+    autoplayUrl += (autoplayUrl.includes('?') ? '&' : '?') + 'autoplay=1&mute=1';
+}
+document.getElementById('courseVideo').src = autoplayUrl;
     
     updateActiveLink(event.target);
 }
@@ -211,12 +240,25 @@ function updateActiveLink(clickedLink) {
 
 // Continue to next item
 function continueToNext() {
-    const activeLink = document.querySelector('.topics a.active');
-    if (activeLink && activeLink.nextElementSibling) {
-        activeLink.nextElementSibling.click();
+    const allTopics = Array.from(document.querySelectorAll('.topics a'));
+    const activeIndex = allTopics.findIndex(link => link.classList.contains('active'));
+
+    if (activeIndex === -1) return;
+
+    const nextTopic = allTopics[activeIndex + 1];
+
+    if (nextTopic) {
+        nextTopic.click();
     } else {
-        alert("You've reached the end of this section!");
+        showCompletionPopup(); // Show final popup
     }
+}
+function showCompletionPopup() {
+    document.getElementById('completionPopup').style.display = 'flex';
+}
+
+function closeCompletionPopup() {
+    document.getElementById('completionPopup').style.display = 'none';
 }
 
 // Enhanced location data with detailed explanations
@@ -471,6 +513,9 @@ document.addEventListener('DOMContentLoaded', () => {
     appContent.style.display = 'block';
 
     // Show the first video by default once inside the app
-    showVideo('https://www.youtube.com/embed/7BpQfI981-U');
+     const firstTopicLink = document.querySelector('.topics a');
+    if (firstTopicLink) {
+        firstTopicLink.click(); // هذا سينفذ الحدث الموجود في الـ onclick للرابط
+    }
   });
 });

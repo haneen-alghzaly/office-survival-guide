@@ -59,7 +59,7 @@
     <div class="container">
 
       <!-- Sidebar with collapsible category menus -->
-      <div class="sidebar" id="sidebar">
+      <div class="sidebar unlocked" id="sidebar">
 
         <!-- Sidebar header with lock toggle -->
         <div class="menu-title">
@@ -202,6 +202,13 @@
         </button>
       </div>
     </div>
+<div id="completionPopup" class="popup-overlay" style="display: none;">
+  <div class="popup-box">
+    <h2>🎉 Congratulations!</h2>
+    <p>You’ve completed all the tutorial. You're now ready to start your internship.</p>
+    <button onclick="closeCompletionPopup()">Awesome!</button>
+  </div>
+</div>
 
     <!-- Fullscreen overlay for quiz feedback (correct/wrong answer) -->
     <div id="quizFeedback" class="quiz-feedback">
