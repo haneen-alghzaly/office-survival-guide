@@ -1,45 +1,50 @@
-/* Define color variables for theme consistency across the site */
+/* ========== ROOT VARIABLES ========== */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --success-color: #2ecc71;
-    --danger-color: #e74c3c;
-    --warning-color: #f39c12;
-    --light-bg: #f8f9fa;
-    --border-color: #e9ecef;
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --success-color: #2ecc71;
+  --danger-color: #e74c3c;
+  --warning-color: #f39c12;
+  --light-bg: #f8f9fa;
+  --border-color: #e9ecef;
 }
 
-.popup-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex; justify-content: center; align-items: center;
-  z-index: 9999;
-}
-.popup-box {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 400px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
-.popup-box h2 {
-  margin-bottom: 10px;
-}
-.popup-box button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
+/* ========== BASE STYLES ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Welcome Screen styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ========== LAYOUT STYLES ========== */
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* ========== COMPONENT STYLES ========== */
+
+/* ----- Welcome Screen ----- */
 .welcome-screen {
   position: fixed;
   inset: 0;
@@ -50,7 +55,6 @@
   text-align: center;
   padding: 2rem;
   z-index: 9999;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .welcome-content {
@@ -64,7 +68,7 @@
 .welcome-content h1 {
   margin-bottom: 1rem;
   font-size: 2.2rem;
-  color: #2c3e50;
+  color: var(--primary-color);
 }
 
 .welcome-content p {
@@ -73,6 +77,415 @@
   color: #34495e;
 }
 
+/* ----- Sidebar ----- */
+.sidebar {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  height: fit-content;
+}
+
+.sidebar.collapsed {
+  max-height: 60px;
+}
+
+.sidebar.collapsed .topics {
+  display: none;
+}
+
+.menu-title {
+  padding: 15px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lock-icon {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.dropdown-content {
+  padding: 15px;
+}
+
+/* ----- Category Buttons ----- */
+.categorybtn {
+  width: 100%;
+  padding: 12px 15px;
+  text-align: left;
+  border: none;
+  background-color: var(--light-bg);
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: all 0.2s;
+}
+
+.categorybtn:hover {
+  background-color: var(--border-color);
+}
+
+.categorybtn[disabled] {
+  background-color: #e9ecef !important;
+  color: #6c757d !important;
+  cursor: not-allowed;
+}
+
+/* ----- Topics ----- */
+.topics {
+  display: none;
+  padding-left: 15px;
+}
+
+.topics a {
+  display: block;
+  padding: 10px 15px;
+  color: #495057;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.topics a:hover, 
+.topics a.active {
+  background-color: var(--border-color);
+  border-left: 3px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* ----- Main Content ----- */
+.main-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+/* ----- Video Container ----- */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+/* ----- Quiz Styles ----- */
+.quiz-container {
+  display: none;
+}
+
+.quiz-question {
+  margin-bottom: 20px;
+}
+
+.quiz-question p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.options-list {
+  display: grid;
+  gap: 10px;
+}
+
+.options-list label {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: var(--light-bg);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.options-list label:hover {
+  background-color: var(--border-color);
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #1a252f;
+}
+
+/* ----- Quiz Feedback ----- */
+.quiz-feedback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.feedback-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#feedbackIcon {
+  font-size: 50px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.correct {
+  color: var(--success-color);
+}
+
+.incorrect {
+  color: var(--danger-color);
+}
+
+.quiz-feedback button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quiz-feedback button:hover {
+  background-color: #2980b9;
+}
+
+/* ----- Continue Button ----- */
+.continue-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 25px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.continue-btn:hover {
+  background-color: #2980b9;
+}
+
+/* ----- Map Container ----- */
+.map-container {
+  display: none;
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+  border: solid 0.5px #c1bebe; 
+}
+
+.map-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  z-index: 1000;
+  position: relative;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.filter-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.filter-btn:hover {
+  opacity: 0.9;
+}
+
+/* Filter button variants */
+.all-btn { background-color: var(--secondary-color); }
+.high-btn { background-color: var(--danger-color); }
+.medium-btn { background-color: var(--warning-color); }
+.low-btn { background-color: var(--success-color); }
+
+.map-content {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-color: var(--light-bg);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#leafletMap {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* ----- Popup Styles ----- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.popup-box h2 {
+  margin-bottom: 10px;
+}
+
+.popup-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ----- Leaflet Overrides ----- */
+.leaflet-tooltip {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.leaflet-popup-content {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.custom-pin {
+  background: transparent;
+  border: none;
+}
+
+/* ========== UTILITY STYLES ========== */
+.header-left {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    order: 2;
+  }
+  
+  .main-content {
+    order: 1;
+  }
+  
+  .map-content {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .map-controls {
+    flex-direction: column;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .map-content {
+    height: 300px;
+  }
+}
+
+/* ========== BUTTON STYLES ========== */
 #welcomeScreen button#enterBtn {
   background-color: #2980b9;
   border: none;
@@ -86,441 +499,4 @@
 
 #welcomeScreen button#enterBtn:hover {
   background-color: #3498db;
-}
-
-/* Reset default browser styles and ensure consistent box sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Set the default font, background, and text color for the body */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-}
-
-/* Style the top navigation header with padding and shadow */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* Set the title style in the header */
-.header-left {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-/* Control the size of the logo image */
-.logo {
-    height: 60px;
-    width: auto;
-}
-
-/* Define the grid layout with sidebar and main content */
-.container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* Style the sidebar menu with background and shadow */
-.sidebar {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    overflow: hidden;
-    height: fit-content;
-}
-
-/* Collapse the sidebar to hide topics */
-.sidebar.collapsed {
-    max-height: 60px;
-}
-
-/* Hide topic list when sidebar is collapsed */
-.sidebar.collapsed .topics {
-    display: none;
-}
-
-/* Style the clickable menu title in each sidebar section */
-.menu-title {
-    padding: 15px;
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-/* Style the icon that toggles menu lock/collapse */
-.lock-icon {
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: 10px;
-}
-
-/* Add padding to the dropdown menu content */
-.dropdown-content {
-    padding: 15px;
-}
-
-/* Style buttons for each category in the sidebar */
-.categorybtn {
-    width: 100%;
-    padding: 12px 15px;
-    text-align: left;
-    border: none;
-    background-color: var(--light-bg);
-    margin: 5px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--primary-color);
-    transition: all 0.2s;
-}
-
-/* Highlight category button on hover */
-.categorybtn:hover {
-    background-color: var(--border-color);
-}
-
-/* Visually disable the button when needed */
-.categorybtn[disabled] {
-    background-color: #e9ecef !important;
-    color: #6c757d !important;
-    cursor: not-allowed;
-}
-
-/* Hide topic links by default inside categories */
-.topics {
-    display: none;
-    padding-left: 15px;
-}
-
-/* Style each topic link inside the sidebar */
-.topics a {
-    display: block;
-    padding: 10px 15px;
-    color: #495057;
-    text-decoration: none;
-    border-left: 3px solid transparent;
-    transition: all 0.2s;
-}
-
-/* Highlight active or hovered topic links */
-.topics a:hover, .topics a.active {
-    background-color: var(--border-color);
-    border-left: 3px solid var(--primary-color);
-    color: var(--primary-color);
-}
-
-/* Style the main content area on the right */
-.main-content {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 20px;
-}
-
-/* Maintain responsive 16:9 aspect ratio for embedded videos */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-/* Make iframe fill the video container */
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 5px;
-}
-
-/* Hide the quiz container by default */
-.quiz-container {
-    display: none;
-}
-
-/* Style each quiz question section */
-.quiz-question {
-    margin-bottom: 20px;
-}
-
-/* Style the question text */
-.quiz-question p {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-/* Arrange answer options vertically with spacing */
-.options-list {
-    display: grid;
-    gap: 10px;
-}
-
-/* Style individual answer option blocks */
-.options-list label {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    background-color: var(--light-bg);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-/* Highlight option on hover */
-.options-list label:hover {
-    background-color: var(--border-color);
-}
-
-/* Style the quiz submit button */
-.submit-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s;
-}
-
-/* Darken the submit button on hover */
-.submit-btn:hover {
-    background-color: #1a252f;
-}
-
-/* Fullscreen overlay for quiz feedback (correct/incorrect) */
-.quiz-feedback {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-/* Style the feedback modal box */
-.feedback-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 400px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* Icon shown inside the feedback modal */
-#feedbackIcon {
-    font-size: 50px;
-    margin-bottom: 20px;
-    display: block;
-}
-
-/* Color for correct feedback */
-.correct {
-    color: var(--success-color);
-}
-
-/* Color for incorrect feedback */
-.incorrect {
-    color: var(--danger-color);
-}
-
-/* Style the feedback modal’s button */
-.quiz-feedback button {
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-/* Slightly darken feedback button on hover */
-.quiz-feedback button:hover {
-    background-color: #2980b9;
-}
-
-/* Button to continue after seeing feedback */
-.continue-btn {
-    display: block;
-    margin: 20px auto 0;
-    padding: 10px 25px;
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-/* Darken continue button on hover */
-.continue-btn:hover {
-    background-color: #2980b9;
-}
-
-/* Container for the interactive map section */
-.map-container {
-    display: none;
-    position: relative;
-    width: 100%;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: white;
-    border: solid 0.5px #c1bebe; 
-}
-
-/* Top control bar with filter buttons for the map */
-.map-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    z-index: 1000;
-    position: relative;
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Style the map filter buttons */
-.filter-btn {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.2s;
-}
-
-/* Highlight active filter button */
-.filter-btn.active {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-/* Slight opacity on hover for buttons */
-.filter-btn:hover {
-    opacity: 0.9;
-}
-
-/* Individual button color variations by severity */
-.all-btn { background-color: var(--secondary-color); }
-.high-btn { background-color: var(--danger-color); }
-.medium-btn { background-color: var(--warning-color); }
-.low-btn { background-color: var(--success-color); }
-
-/* Container for map display (Leaflet.js map area) */
-.map-content {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    background-color: var(--light-bg);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-/* Style the actual Leaflet map */
-#leafletMap {
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-}
-
-/* Custom tooltip for map points */
-.leaflet-tooltip {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 8px 12px;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-/* Style map popups */
-.leaflet-popup-content {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Optional styling for custom map markers */
-.custom-pin {
-    background: transparent;
-    border: none;
-}
-
-/* Adjust layout for tablets (≤ 992px) */
-@media (max-width: 992px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    
-    .sidebar {
-        order: 2;
-    }
-    
-    .main-content {
-        order: 1;
-    }
-    
-    .map-content {
-        height: 400px;
-    }
-}
-
-/* Stack elements for mobile (≤ 576px) */
-@media (max-width: 576px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-    
-    .map-controls {
-        flex-direction: column;
-    }
-    
-    .filter-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .map-content {
-        height: 300px;
-    }
 }
