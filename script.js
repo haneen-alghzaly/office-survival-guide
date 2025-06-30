@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the first video by default once inside the app
      const firstTopicLink = document.querySelector('.topics a');
     if (firstTopicLink) {
-        firstTopicLink.click(); // هذا سينفذ الحدث الموجود في الـ onclick للرابط
+        firstTopicLink.click();
     }
   });
 });
