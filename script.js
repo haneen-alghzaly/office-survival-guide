@@ -480,6 +480,7 @@ function filterMap(riskLevel) {
         }
     });
 }
+
 // Show map function
 function showMap(mapType) {
     document.getElementById('videoContainer').style.display = 'none';
