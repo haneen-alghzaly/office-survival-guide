@@ -40,31 +40,6 @@ function toggleMenuLock() {
     }
 }
 
-// Initialize with topics visible
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize lock icon (only once)
-    document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
-    
-    // Initialize sidebar state
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.add('unlocked');
-    
-    // Show all topics by default
-    document.querySelectorAll('.topics').forEach(topic => {
-        topic.style.display = 'block';
-    });
-     // Welcome screen setup
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    const appContent = document.getElementById('appContent');
-    const enterBtn = document.getElementById('enterBtn');
-
-    enterBtn.addEventListener('click', () => {
-        welcomeScreen.style.display = 'none';
-        appContent.style.display = 'block';
-        showVideo('https://www.youtube.com/embed/7BpQfI981-U');
-    });
-});
-
 // Toggle topic visibility
 function toggleTopics(topicId) {
     const topics = document.getElementById(topicId);
@@ -503,14 +478,27 @@ function showMap(mapType) {
 
 // Show welcome screen on page load, hide app content
 document.addEventListener('DOMContentLoaded', () => {
-  const welcomeScreen = document.getElementById('welcomeScreen');
-  const appContent = document.getElementById('appContent');
-  const enterBtn = document.getElementById('enterBtn');
+   // Welcome screen setup
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const appContent = document.getElementById('appContent');
+    const enterBtn = document.getElementById('enterBtn');
 
-  // On clicking Enter Guide, hide welcome and show app content
-  enterBtn.addEventListener('click', () => {
+    // On clicking Enter Guide, hide welcome and show app content
+    enterBtn.addEventListener('click', () => {
     welcomeScreen.style.display = 'none';
     appContent.style.display = 'block';
+
+    // Initialize lock icon
+    document.getElementById('lockIcon').addEventListener('click', toggleMenuLock);
+
+    // Initialize sidebar state
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.add('unlocked');
+
+    // Show all topics by default
+    document.querySelectorAll('.topics').forEach(topic => {
+        topic.style.display = 'block';
+    });
 
     // Show the first video by default once inside the app
      const firstTopicLink = document.querySelector('.topics a');

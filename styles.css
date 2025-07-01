@@ -7,6 +7,12 @@
   --warning-color: #f39c12;
   --light-bg: #f8f9fa;
   --border-color: #e9ecef;
+
+  --padding: 20px;
+  --radius: 8px;
+  --shadow: 0 2px 5px rgba(0,0,0,0.1);
+  --transition-fast: 0.2s;
+  --transition-slow: 0.3s;
 }
 
 /* ========== BASE STYLES ========== */
@@ -23,12 +29,39 @@ body {
   line-height: 1.6;
 }
 
-/* ========== LAYOUT STYLES ========== */
+/* ========== BUTTON UTILITY ========== */
+.btn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  color: white;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #1a252f;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #2980b9;
+}
+
+/* ========== LAYOUT ========== */
 .container {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: minmax(250px, 300px) 1fr;
   gap: 20px;
-  padding: 20px;
+  padding: var(--padding);
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -42,7 +75,7 @@ header {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* ========== COMPONENT STYLES ========== */
+/* ========== COMPONENTS ========== */
 
 /* ----- Welcome Screen ----- */
 .welcome-screen {
@@ -60,7 +93,7 @@ header {
 .welcome-content {
   max-width: 480px;
   background: white;
-  border-radius: 8px;
+  border-radius: var(--radius);
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   padding: 2rem 3rem;
 }
@@ -77,12 +110,27 @@ header {
   color: #34495e;
 }
 
+#welcomeScreen button#enterBtn {
+  background-color: #2980b9;
+  border: none;
+  color: white;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+#welcomeScreen button#enterBtn:hover {
+  background-color: #3498db;
+}
+
 /* ----- Sidebar ----- */
 .sidebar {
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all var(--transition-slow) ease;
   overflow: hidden;
   height: fit-content;
 }
@@ -128,7 +176,7 @@ header {
   cursor: pointer;
   font-weight: 600;
   color: var(--primary-color);
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
 }
 
 .categorybtn:hover {
@@ -136,7 +184,7 @@ header {
 }
 
 .categorybtn[disabled] {
-  background-color: #e9ecef !important;
+  background-color: var(--border-color) !important;
   color: #6c757d !important;
   cursor: not-allowed;
 }
@@ -153,10 +201,10 @@ header {
   color: #495057;
   text-decoration: none;
   border-left: 3px solid transparent;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
 }
 
-.topics a:hover, 
+.topics a:hover,
 .topics a.active {
   background-color: var(--border-color);
   border-left: 3px solid var(--primary-color);
@@ -166,12 +214,12 @@ header {
 /* ----- Main Content ----- */
 .main-content {
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   padding: 20px;
 }
 
-/* ----- Video Container ----- */
+/* ----- Video ----- */
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -190,7 +238,7 @@ header {
   border-radius: 5px;
 }
 
-/* ----- Quiz Styles ----- */
+/* ----- Quiz ----- */
 .quiz-container {
   display: none;
 }
@@ -200,7 +248,7 @@ header {
 }
 
 .quiz-question p {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -217,26 +265,17 @@ header {
   background-color: var(--light-bg);
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
 }
 
 .options-list label:hover {
   background-color: var(--border-color);
 }
 
+/* ----- Quiz Controls ----- */
 .submit-btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.submit-btn:hover {
-  background-color: #1a252f;
+  @extend .btn;
+  @extend .btn-primary;
 }
 
 /* ----- Quiz Feedback ----- */
@@ -277,47 +316,28 @@ header {
 }
 
 .quiz-feedback button {
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  @extend .btn;
+  @extend .btn-secondary;
   margin-top: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.quiz-feedback button:hover {
-  background-color: #2980b9;
 }
 
 /* ----- Continue Button ----- */
 .continue-btn {
   display: block;
   margin: 20px auto 0;
-  padding: 10px 25px;
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  @extend .btn;
+  @extend .btn-secondary;
 }
 
-.continue-btn:hover {
-  background-color: #2980b9;
-}
-
-/* ----- Map Container ----- */
+/* ========== MAP ========== */
 .map-container {
   display: none;
   position: relative;
   width: 100%;
   border-radius: 5px;
-  padding: 20px;
+  padding: var(--padding);
   background-color: white;
-  border: solid 0.5px #c1bebe; 
+  border: solid 0.5px #c1bebe;
 }
 
 .map-controls {
@@ -342,7 +362,7 @@ header {
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
 }
 
 .filter-btn.active {
@@ -354,7 +374,7 @@ header {
   opacity: 0.9;
 }
 
-/* Filter button variants */
+/* Filter Variants */
 .all-btn { background-color: var(--secondary-color); }
 .high-btn { background-color: var(--danger-color); }
 .medium-btn { background-color: var(--warning-color); }
@@ -375,7 +395,7 @@ header {
   border-radius: 5px;
 }
 
-/* ----- Popup Styles ----- */
+/* ========== POPUP ========== */
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -404,21 +424,17 @@ header {
 
 .popup-box button {
   margin-top: 20px;
-  padding: 10px 20px;
+  @extend .btn;
   background-color: #4CAF50;
-  border: none;
-  color: white;
   font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
-/* ----- Leaflet Overrides ----- */
+/* ========== LEAFLET CUSTOMIZATION ========== */
 .leaflet-tooltip {
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow);
   padding: 8px 12px;
   font-size: 14px;
   margin-top: 5px;
@@ -433,7 +449,7 @@ header {
   border: none;
 }
 
-/* ========== UTILITY STYLES ========== */
+/* ========== UTILITIES ========== */
 .header-left {
   font-size: 24px;
   font-weight: bold;
@@ -450,15 +466,15 @@ header {
   .container {
     grid-template-columns: 1fr;
   }
-  
+
   .sidebar {
     order: 2;
   }
-  
+
   .main-content {
     order: 1;
   }
-  
+
   .map-content {
     height: 400px;
   }
@@ -470,33 +486,17 @@ header {
     text-align: center;
     gap: 10px;
   }
-  
+
   .map-controls {
     flex-direction: column;
   }
-  
+
   .filter-btn {
     width: 100%;
     justify-content: center;
   }
-  
+
   .map-content {
     height: 300px;
   }
-}
-
-/* ========== BUTTON STYLES ========== */
-#welcomeScreen button#enterBtn {
-  background-color: #2980b9;
-  border: none;
-  color: white;
-  padding: 0.7rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-}
-
-#welcomeScreen button#enterBtn:hover {
-  background-color: #3498db;
 }
